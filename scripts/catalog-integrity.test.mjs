@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { test } from "node:test";
+import { fileURLToPath } from "node:url";
 
-const ROOT = "/workspace";
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 function read(rel) {
   return readFileSync(`${ROOT}/${rel}`, "utf8");

@@ -133,3 +133,140 @@ export function suggestedAhjSearch(city: string, stateCode: string): string {
   if (!place) return `${st} building department permit portal`;
   return `${place} ${st} building department permit portal`;
 }
+
+/** Honest status for franchise / ROW / fiber. Partial — do not treat as certified logins. */
+export const ROW_FIBER_STATUS =
+  "Partial — national + selected major cities. Street, excavation, and telecom franchise work is often a different counter from the building AHJ.";
+
+export interface RowFiberNote {
+  id: string;
+  scope: "national" | "metro";
+  placeId?: string;
+  label: string;
+  url: string;
+  note: string;
+}
+
+export const ROW_FIBER_NOTES: RowFiberNote[] = [
+  {
+    id: "nat-811",
+    scope: "national",
+    label: "Call 811 before you dig",
+    url: "https://call811.com/",
+    note: "Utility locate. Separate from the building permit — still required for most excavation.",
+  },
+  {
+    id: "nat-fcc",
+    scope: "national",
+    label: "FCC — communications / pole attachments",
+    url: "https://www.fcc.gov/",
+    note: "Federal overlay for telecom. Local ROW and franchise still control the street and the pole in the right-of-way.",
+  },
+  {
+    id: "nat-fhwa",
+    scope: "national",
+    label: "FHWA — utilities in highway ROW",
+    url: "https://www.fhwa.dot.gov/programadmin/utility.cfm",
+    note: "State DOT ROW is a different desk from the municipal building official. Confirm before you occupy a state road.",
+  },
+  {
+    id: "metro-nyc",
+    scope: "metro",
+    placeId: "ny-nyc",
+    label: "NYC DOT — streets and sidewalks",
+    url: "https://www.nyc.gov/html/dot/html/permits/permits.shtml",
+    note: "Street opening, sidewalk, and franchise occupancy are DOT, not DOB. Confirm the current permit type on the DOT site.",
+  },
+  {
+    id: "metro-la",
+    scope: "metro",
+    placeId: "ca-los-angeles",
+    label: "Los Angeles Streets / BOE",
+    url: "https://streetsla.lacity.org/",
+    note: "Excavation, U-permit, and franchise in the public way are not LADBS building tickets.",
+  },
+  {
+    id: "metro-chicago",
+    scope: "metro",
+    placeId: "il-chicago",
+    label: "Chicago CDOT",
+    url: "https://www.chicago.gov/city/en/depts/cdot.html",
+    note: "Public-way opening and occupancy sit with CDOT. Building is a separate department.",
+  },
+  {
+    id: "metro-houston",
+    scope: "metro",
+    placeId: "tx-houston",
+    label: "Houston Public Works",
+    url: "https://www.houstonpermittingcenter.org/",
+    note: "ROW / utility in the street is often a different queue from the building permit even when both are filed at the Permitting Center. Confirm the record type.",
+  },
+  {
+    id: "metro-miami",
+    scope: "metro",
+    placeId: "fl-miami",
+    label: "City of Miami — right-of-way",
+    url: "https://www.miami.gov/",
+    note: "iBuild is the building portal. Street / franchise work is a separate city counter — confirm before you cut pavement.",
+  },
+  {
+    id: "metro-miami-dade",
+    scope: "metro",
+    placeId: "fl-miami-dade",
+    label: "Miami-Dade Transportation & Public Works",
+    url: "https://www.miamidade.gov/global/transportation/home.page",
+    note: "County ROW and the county building department (RER) are different desks.",
+  },
+  {
+    id: "metro-seattle",
+    scope: "metro",
+    placeId: "wa-seattle",
+    label: "Seattle SDOT",
+    url: "https://www.seattle.gov/transportation",
+    note: "Street-use and utility permits are SDOT. SDCI issues the building permit.",
+  },
+  {
+    id: "metro-dc",
+    scope: "metro",
+    placeId: "dc-washington",
+    label: "DDOT",
+    url: "https://ddot.dc.gov/",
+    note: "Public-space and occupancy permits are DDOT. DOB is the building official.",
+  },
+  {
+    id: "metro-denver",
+    scope: "metro",
+    placeId: "co-denver",
+    label: "Denver DOTI",
+    url: "https://www.denvergov.org/Government/Agencies-Departments-Offices/Department-of-Transportation-and-Infrastructure",
+    note: "ROW / excavation is DOTI. Community Planning and Development is the building AHJ.",
+  },
+  {
+    id: "metro-phoenix",
+    scope: "metro",
+    placeId: "az-phoenix",
+    label: "Phoenix Street Transportation",
+    url: "https://www.phoenix.gov/streets",
+    note: "Street cuts and occupancy are not the Planning & Development building ticket.",
+  },
+  {
+    id: "metro-philadelphia",
+    scope: "metro",
+    placeId: "pa-philadelphia",
+    label: "Philadelphia Streets Department",
+    url: "https://www.phila.gov/departments/department-of-streets/",
+    note: "Street opening / dumpster / occupancy is Streets. L&I is the building official.",
+  },
+  {
+    id: "metro-atlanta",
+    scope: "metro",
+    placeId: "ga-atlanta",
+    label: "Atlanta Department of Transportation",
+    url: "https://www.atlantaga.gov/government/departments/transportation",
+    note: "ROW / lane closure is ATLDOT. Office of Buildings is a different counter.",
+  },
+];
+
+export function rowNotesForPlace(placeId: string): RowFiberNote[] {
+  return ROW_FIBER_NOTES.filter((n) => n.scope === "national" || n.placeId === placeId);
+}

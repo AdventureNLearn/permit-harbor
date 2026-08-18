@@ -1,6 +1,7 @@
 # Permit Harbor
 
-**Work in progress · built in public.**
+**LOCKED · live catalog 2026-08-18**  
+Public catalog SoT matching https://hivepermitdev.grok.me. Next build = a new tree. Do not extend this repo.
 
 US construction-permit desk catalog. Find the Authority Having Jurisdiction (city, county, or territorial office) before you file.
 
@@ -22,7 +23,7 @@ Guidance only — not a city login, not legal advice, and not a finished verific
 
 **Bottom line:** the map of *names and jurisdictions* is the durable work. The *click-through URL* for most non-core desks is a starting hint, not a certified login path. Treat factory links as research seeds until verified.
 
-This repo is intentionally public while the catalog is still being hardened.
+This catalog is **locked** to the 2026-08-18 live snapshot. App shell lives in private `AdventureNLearn/PermitHelper`.
 
 ---
 
